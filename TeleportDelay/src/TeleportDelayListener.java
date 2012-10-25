@@ -4,25 +4,25 @@ import java.util.HashMap;
 public class TeleportDelayListener extends PluginListener{
 	HashMap<String,String> players = new HashMap<String,String>();
 	public boolean onCommand(Player player, String[] split) {
-		if (split[0].equals("/spawn") && !player.canUseCommand("/skipdelay")){
+		if (split[0].equals("/spawn") && !player.canUseCommand("/skipdelay") && player.canUseCommand("/spawn")){
 			if (players.containsKey(player.getName())){
 				player.notify("You already have a pending teleport request!");
 				return true;
 			}
-			player.sendMessage("§7Teleportation will commence in 3 seconds. Don't move.");
+			player.sendMessage("ï¿½7Teleportation will commence in 3 seconds. Don't move.");
 			runTimer(player, split);
 		return true;
 		}
-		if (split[0].equals("/home") && !player.canUseCommand("/skipdelay")){
+		if (split[0].equals("/home") && !player.canUseCommand("/skipdelay") && player.canUseCommand("/home")){
 			if (players.containsKey(player.getName())){
 				player.notify("You already have a pending teleport request!");
 				return true;
 			}
-			player.sendMessage("§7Teleportation will commence in 3 seconds. Don't move.");
+			player.sendMessage("ï¿½7Teleportation will commence in 3 seconds. Don't move.");
 			runTimer(player, split);
 			return true;
 		}
-		if (split[0].equals("/warp") && !player.canUseCommand("/skipdelay")){
+		if (split[0].equals("/warp") && !player.canUseCommand("/skipdelay") && player.canUseCommand("/warp")){
 			if (players.containsKey(player.getName())){
 				player.notify("You already have a pending teleport request!");
 				return true;
@@ -34,7 +34,7 @@ public class TeleportDelayListener extends PluginListener{
 			if (etc.getDataSource().getWarp(split[1]) == null){
 				return false;
 			}
-			player.sendMessage("§7Teleportation will commence in 3 seconds. Don't move.");
+			player.sendMessage("ï¿½7Teleportation will commence in 3 seconds. Don't move.");
 			runTimer(player, split);
 			return true;
 		}
@@ -43,7 +43,7 @@ public class TeleportDelayListener extends PluginListener{
 	
 	public void onPlayerMove(Player player,Location from,Location to){
 		if (players.containsKey(player.getName())){
-		player.sendMessage("§cTeleportation request cancelled.");
+		player.sendMessage("ï¿½cTeleportation request cancelled.");
 		players.remove(player.getName());
 		}
 	}
